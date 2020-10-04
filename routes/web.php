@@ -27,7 +27,9 @@ Route::post('/login', "Auth@login")->name('login');
 Route::get("/register", "Auth@register_page");
 Route::post('/register', "Auth@register")->middleware('gateway')->name('register');
 
-Route::get("/logout", "Auth@logout");
+Route::post("/logout", "Auth@logout");
+
+Route::get('profile/{id}', 'User@profile');
 
 Route::prefix("/administrator")->namespace("Admin")->group(function () {
     Route::get("/", "Pages@index")->name("admin.home");

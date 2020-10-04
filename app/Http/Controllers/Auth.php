@@ -25,7 +25,7 @@ class Auth extends Controller
     {
         $request->validate([
             "username" => "required",
-            // "password" => "required",
+            "password" => "required",
         ]);
 
         $find = User::where([
