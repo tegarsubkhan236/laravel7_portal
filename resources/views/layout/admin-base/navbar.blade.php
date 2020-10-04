@@ -96,7 +96,7 @@
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+            <a href="{{ url('/administrator')}}" class="nav-link {{ request()->is('administrator') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
                 Dashboard
