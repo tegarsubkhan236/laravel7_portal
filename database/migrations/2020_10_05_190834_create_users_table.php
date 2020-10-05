@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('no_hp', 20)->nullable();
             $table->integer('level');
             $table->date('created_at');
+            $table->date('updated_at')->nullable();
         });
     }
 

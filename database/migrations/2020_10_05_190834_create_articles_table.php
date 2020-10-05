@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtriclesTable extends Migration
+class CreateArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAtriclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('atricles', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('category_id')->index('category_id');
             $table->string('title', 100);
             $table->text('contents');
+            $table->string('files', 100)->nullable();
             $table->date('created_at');
             $table->date('updated_at');
         });
@@ -30,6 +31,6 @@ class CreateAtriclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('atricles');
+        Schema::dropIfExists('articles');
     }
 }

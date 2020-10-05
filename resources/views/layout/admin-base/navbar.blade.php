@@ -51,7 +51,7 @@
                 <img src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}" class="img-circle" alt="User Image">
                 <p>
                 {{ session()->get('nama') }}
-                <small>Member since #</small>
+                <small>Member since {{ session()->get('created_at') }}</small>
                 </p>
             </li>
             <!-- Menu Footer-->

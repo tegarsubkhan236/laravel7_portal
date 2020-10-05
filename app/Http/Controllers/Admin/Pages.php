@@ -6,12 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Pages extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $total_admin = DB::table('users')->where('level', 1)->count();
+        $total_author = DB::table('users')->where('level',  2)->count();
+        $total_announcement = DB::table('announcements')->count();
+        return view('admin.index', [
+            'total_admin' => $total_admin,
+            'total_author' => $total_author,
+            'total_announcement' => $total_announcement,
+        ]);
     }
 
     public function user_index()

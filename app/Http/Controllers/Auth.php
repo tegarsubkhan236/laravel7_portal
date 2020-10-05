@@ -37,6 +37,7 @@ class Auth extends Controller
                 "level" => $find->first()->level,
                 "id" => $find->first()->id,
                 "nama" => $find->first()->nama,
+                "created_at" => $find->first()->created_at,
             ]);
             if ($find->first()->level == 0) {
                 $pages = "netizen";

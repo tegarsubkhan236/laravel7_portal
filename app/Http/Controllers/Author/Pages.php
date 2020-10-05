@@ -12,7 +12,12 @@ class Pages extends Controller
 {
     public function index()
     {
-        return view('author.index');
+        $total_category = DB::table('categories')->count();
+        $total_article = DB::table('articles')->count();
+        return view('author.index', [
+            'total_category' => $total_category,
+            'total_article' => $total_article,
+        ]);
     }
 
     public function category_index()
