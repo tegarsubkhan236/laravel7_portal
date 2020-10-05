@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property string|null $link
- * @property bool $is_blank
+ * @property int $is_blank
  * @property int|null $page_id
  * @property int|null $parent_id
  * 
@@ -31,7 +31,7 @@ class Menu extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'is_blank' => 'bool',
+		'is_blank' => 'int',
 		'page_id' => 'int',
 		'parent_id' => 'int'
 	];

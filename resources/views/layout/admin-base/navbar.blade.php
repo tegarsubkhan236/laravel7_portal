@@ -93,81 +93,168 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-        <li class="nav-item">
-            <a href="{{ url('/administrator')}}" class="nav-link {{ request()->is('administrator') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard
-            </p>
-            </a>
-        </li>
         @if ( session()->get('level') == 1 )
-        <li class="nav-item has-treeview {{ request()->is('#')  ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+            <li class="nav-item">
+                <a href="{{ url('/administrator')}}" class="nav-link {{ request()->is('administrator') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                Master
-                <i class="fas fa-angle-left right"></i>
+                    Dashboard
                 </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Team</p>
                 </a>
-                </li>
-                <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>Customer</p>
+            </li>
+            <li class="nav-item has-treeview {{ request()->is('administrator/user')  || request()->is('administrator/user/create')  ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                    Master
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
-                </li>
-                <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Category</p>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{ route('user') }}" class="nav-link {{ request()->is('administrator/user') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>User</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.create') }}" class="nav-link {{ request()->is('administrator/user/create') ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>New User</p>
+                        </a>
+                        </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-image"></i>
+                    <p>
+                    Portofolio
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
                 </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item has-treeview {{ request()->is('#') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                            Images
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Images</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>New Image</p>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                            Videos
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Videos</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>New Video</p>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ request()->is('administrator/announcement') ||  request()->is('administrator/announcement/create') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                        Announcement
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{ route('announcement') }}" class="nav-link {{ request()->is('administrator/announcement') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Announcement</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('announcement.create') }}" class="nav-link {{ request()->is('administrator/announcement/create') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>New Announcement</p>
+                    </a>
+                    </li>
+                </ul>
+            </li>
+
+        @elseif(session()->get('level') == 2)
+            <li class="nav-item">
+                <a href="{{route('author.home')}}" class="nav-link {{ request()->is('author') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                Projects
-                <i class="fas fa-angle-left right"></i>
+                    Dashboard
                 </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon text-danger"></i>
-                    <p>New Projects</p>
                 </a>
-                </li>
-                <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon text-warning"></i>
-                    <p>Project On Designer</p>
+            </li>
+            <li class="nav-item has-treeview {{ request()->is('author/category') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                    Master
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                        <i class="far fa-circle nav-icon text-info"></i>
-                        <p>Project On Review</p>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{ route('category') }}" class="nav-link {{ request()->is('author/category') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Category</p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">
-                        <i class="far fa-circle nav-icon text-success"></i>
-                        <p>Project Completed</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview {{ request()->is('author/article') || request()->is('author/article/create') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                    Article
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{ route('article') }}" class="nav-link {{ request()->is('author/article') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Article</p>
                     </a>
-                </li>
-            </ul>
-        </li>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('article.store') }}" class="nav-link {{ request()->is('author/article/create') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>New Article</p>
+                    </a>
+                    </li>
+                </ul>
+            </li>
         @endif
     </nav>
     <!-- /.sidebar-menu -->

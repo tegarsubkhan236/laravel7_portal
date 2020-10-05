@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $slug
  * @property string $contents
- * @property bool $is_commented
+ * @property int $is_commented
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -30,7 +30,7 @@ class Page extends Model
 	protected $table = 'pages';
 
 	protected $casts = [
-		'is_commented' => 'bool'
+		'is_commented' => 'int'
 	];
 
 	protected $fillable = [
