@@ -44,6 +44,13 @@ Route::prefix("/administrator")->namespace("Admin")->group(function () {
     Route::get("/announcement/edit/{id}", "Pages@announcement_edit")->name("announcement.edit");
     Route::post("/announcement/update/{id}", "System@announcement_update")->name("announcement.update");
     Route::delete("/announcement/delete/{id}", "System@announcement_delete")->name("announcement.delete");
+
+    Route::get("/portfolio", "Pages@portfolio_index")->name("portfolio");
+    Route::get("/portfolio/create", "Pages@portfolio_create")->name("portfolio.create");
+    Route::post("/portfolio/store", "System@portfolio_store")->name("portfolio.store");
+    Route::get("/portfolio/edit/{id}", "Pages@portfolio_edit")->name("portfolio.edit");
+    Route::post("/portfolio/update/{id}", "System@portfolio_update")->name("portfolio.update");
+    Route::delete("/portfolio/delete/{id}", "System@portfolio_delete")->name("portfolio.delete");
 });
 
 Route::prefix("/author")->namespace("Author")->group(function () {

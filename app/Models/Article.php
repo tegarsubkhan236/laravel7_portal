@@ -15,8 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $category_id
  * @property string $title
+ * @property string|null $cover
  * @property string $contents
- * @property int $files
+ * @property string|null $files
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
@@ -29,13 +30,13 @@ class Article extends Model
 	protected $table = 'articles';
 
 	protected $casts = [
-		'category_id' => 'int',
-		'files' => 'int'
+		'category_id' => 'int'
 	];
 
 	protected $fillable = [
 		'category_id',
 		'title',
+		'cover',
 		'contents',
 		'files'
 	];

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnnouncementsTable extends Migration
+class CreatePortfolioDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('portfolio_details', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('title', 100);
-            $table->text('contents');
-            $table->text('files')->nullable();
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->string('image')->nullable();
+            $table->string('video')->nullable();
+            $table->integer('portfolio_id')->index('portfolio_id');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('portfolio_details');
     }
 }

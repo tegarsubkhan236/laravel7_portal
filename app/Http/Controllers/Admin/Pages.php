@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+use App\Models\Portfolio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,49 @@ class Pages extends Controller
                 "data" => $row->first(),
                 "route" => [
                     "name" => "announcement.update",
+                    "params" => [
+                        $id
+                    ]
+                ]
+            ]);
+        } else {
+            return  back()->withErrors(["message" => "Data Tidak Ditemukan"]);
+        }
+    }
+
+    public function portfolio_index()
+    {
+        $data = Portfolio::all();
+        return view('admin.portfolio', [
+            "title" => "Portfolio",
+            "level" => "Administrator",
+            "data" => $data,
+        ]);
+    }
+
+    public function portfolio_create()
+    {
+        return view("admin.portfolio_form", [
+            "title" => "portfolio",
+            "level" => "Administrator",
+            "data" => null,
+            "route" => [
+                "name" => "portfolio.store",
+                "params" => []
+            ]
+        ]);
+    }
+
+    public function portfolio_edit($id)
+    {
+        $row = Portfolio::where(["id" => $id]);
+        if ($row->count() > 0) {
+            return view("admin.portfolio_form", [
+                "title" => "Update portfolio",
+                "level" => "Admin",
+                "data" => $row->first(),
+                "route" => [
+                    "name" => "portfolio.update",
                     "params" => [
                         $id
                     ]

@@ -125,60 +125,26 @@
                         </li>
                 </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item has-treeview {{ request()->is('administrator/portfolio')  || request()->is('administrator/portfolio/create')  ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-image"></i>
                     <p>
-                    Portofolio
+                    Portfolio
                     <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>
-                            Images
-                            <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Images</p>
-                            </a>
-                            </li>
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>New Image</p>
-                            </a>
-                            </li>
-                        </ul>
+                    <a href="{{ route('portfolio') }}" class="nav-link {{ request()->is('administrator/portfolio') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Portfolio</p>
+                    </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>
-                            Videos
-                            <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Videos</p>
-                            </a>
-                            </li>
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>New Video</p>
-                            </a>
-                            </li>
-                        </ul>
+                    <a href="{{ route('portfolio.create') }}" class="nav-link {{ request()->is('administrator/portfolio/create') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>New Portfolio</p>
+                    </a>
                     </li>
                 </ul>
             </li>

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $title
+ * @property string|null $cover
  * @property string $contents
  * @property string|null $files
  * @property Carbon $created_at
@@ -27,6 +28,7 @@ class Announcement extends Model
 
 	protected $fillable = [
 		'title',
+		'cover',
 		'contents',
 		'files'
 	];

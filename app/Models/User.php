@@ -21,13 +21,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $no_hp
  * @property int $level
  * @property Carbon $created_at
+ * @property Carbon|null $updated_at
  *
  * @package App\Models
  */
 class User extends Model
 {
 	protected $table = 'users';
-	public $timestamps = false;
 
 	protected $casts = [
 		'level' => 'int'
