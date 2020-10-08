@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Redis;
 
 class User extends Controller
 {
-    public function profile($id)
+    public function profile()
     {
+        $id = session()->get("id");
         $find = ModelsUser::findOrFail($id);
         if ($find) {
             $data = [
@@ -34,8 +35,9 @@ class User extends Controller
         ]);
     }
 
-    public function profile_update(Request $request, $id)
+    public function profile_update(Request $request)
     {
+        $id =  $id = session()->get("id");
         $request->validate([
             "nama" => "required",
             "username" => "required",

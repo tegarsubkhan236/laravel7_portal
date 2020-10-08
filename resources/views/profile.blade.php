@@ -1,59 +1,44 @@
-@extends('layout.admin-base.main')
 
-@section('title', 'Profile Pages' )
+@extends('adminlte::page')
 
-@section('breadcrumb')
-    <div class="content-header">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Administrator</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('title', "Profile")
+
+@section('content_header')
 @stop
 
 @section('content')
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-3">
-                <!-- Profile Image -->
-                <div class="card card-primary card-outline">
-                    <div class="card-body box-profile">
-                        <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}"
-                                alt="User profile picture">
-                        </div>
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                             src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}"
+                             alt="User profile picture">
+                    </div>
 
-                        <h3 class="profile-username text-center">{{$data["nama"]}}</h3>
+                    <h3 class="profile-username text-center">{{$data["nama"]}}</h3>
 
-                        <p class="text-muted text-center">
-                            @if ($data["level"] == 1)
+                    <p class="text-muted text-center">
+                        @if ($data["level"] == 1)
                             Administrator
-                            @elseif($data["level"]  == 2)
+                        @elseif($data["level"]  == 2)
                             Author
-                            @elseif($data["level"]  == 0)
+                        @elseif($data["level"]  == 0)
                             Netizen
-                            @endif
-                        </p>
-                    </div>
+                        @endif
+                    </p>
                 </div>
-                <!-- About Me Box -->
-                <div class="card card-primary">
-                    <div class="card-header">
+            </div>
+            <!-- About Me Box -->
+            <div class="card card-primary">
+                <div class="card-header">
                     <h3 class="card-title">About Me</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
                     <strong><i class="fas fa-book mr-1"></i> Nama Lengkap</strong>
                     <p class="text-muted">
                         {{$data["nama"]}}
@@ -69,20 +54,20 @@
 
                     <strong><i class="fa fa-map-marker-alt mr-1"></i> No HP</strong>
                     <p class="text-muted">{{$data["no_hp"]}}</p>
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                    </ul>
+                </div>
+                <div class="card-body">
                     <div class="tab-content">
                         <!-- ACTIVITY -->
                         <div class="active tab-pane" id="activity">
@@ -132,9 +117,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
-                                </div>
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -144,6 +129,13 @@
 
         </div>
     </div>
-</section>
+@stop
+
+@section('css')
+
+@stop
+
+@section('js')
+
 @stop
 

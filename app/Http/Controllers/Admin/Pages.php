@@ -13,9 +13,9 @@ class Pages extends Controller
 {
     public function index()
     {
-        $total_admin = DB::table('users')->where('level', 1)->count();
-        $total_author = DB::table('users')->where('level',  2)->count();
-        $total_announcement = DB::table('announcements')->count();
+        $total_admin = User::where(["level"=>1])->count();
+        $total_author = User::where(["level"=>2])->count();
+        $total_announcement = Announcement::count();
         return view('admin.index', [
             'total_admin' => $total_admin,
             'total_author' => $total_author,
