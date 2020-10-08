@@ -1,42 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$title}}</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="{{ asset('css_auth/style.css') }}">
+@extends('adminlte::page')
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-</head>
+@section('title', $title)
 
-<body>
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
+@section('content_header')
+    <h1>Login Page</h1>
+@stop
 
-            <!-- Login Form -->
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
-                <input type="text" class="fadeIn second" name="username" placeholder="Username">
-                <input type="password" class="fadeIn third" name="password" placeholder="Password">
-                <input type="submit" class="fadeIn fourth" value="Log In">
-            </form>
+@section('content')
+    <div class="row">
+        <div class="col-md-6 offset-3">
 
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="{{ url('/register') }}">Create new Account</a>
+            <div class="card card-default">
+                @include("message")
+                <form role="form" action="{{route("login")}}" method="post">
+                    <div class="card-body">
+                        @csrf
+                        <div class="form-group">
+                            <label >Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label >Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Username">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
             </div>
 
         </div>
     </div>
-    @if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
-    @endif
-</body>
+@stop
 
-</html>
+@section('css')
+
+@stop
+
+@section('js')
+
+@stop

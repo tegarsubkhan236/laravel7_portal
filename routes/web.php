@@ -25,12 +25,12 @@ Route::get("/login", "Auth@login_page");
 Route::post('/login', "Auth@login")->name('login');
 Route::get("/register", "Auth@register_page");
 Route::post('/register', "Auth@register")->middleware('gateway')->name('register');
-Route::post("/logout", "Auth@logout")->name('logout');
+Route::get("/logout", "Auth@logout")->name('logout');
 
-Route::get('/profile/{id}', 'User@profile')->name('profile');
-Route::post("/profile/update/{id}", "User@profile_update")->name("profile.update");
+Route::get('/profile', 'User@profile')->middleware("gateway:1|2|3")->name('profile');
+Route::post("/profile/update", "User@profile_update")->name("profile.update");
 
-Route::prefix("/administrator")->namespace("Admin")->group(function () {
+Route::prefix("/administrator")->namespace("Admin")->middleware('gateway:1')->group(function () {
     Route::get("/", "Pages@index")->name("admin.home");
 
     Route::get("/user", "Pages@user_index")->name("user");
