@@ -45,15 +45,22 @@ Route::prefix("/administrator")->namespace("Admin")->middleware('gateway:1')->gr
     Route::post("/announcement/update/{id}", "System@announcement_update")->name("announcement.update");
     Route::delete("/announcement/delete/{id}", "System@announcement_delete")->name("announcement.delete");
 
-    Route::get("/portfolio", "Pages@portfolio_index")->name("portfolio");
-    Route::get("/portfolio/create", "Pages@portfolio_create")->name("portfolio.create");
-    Route::post("/portfolio/store", "System@portfolio_store")->name("portfolio.store");
-    Route::get("/portfolio/edit/{id}", "Pages@portfolio_edit")->name("portfolio.edit");
-    Route::post("/portfolio/update/{id}", "System@portfolio_update")->name("portfolio.update");
-    Route::delete("/portfolio/delete/{id}", "System@portfolio_delete")->name("portfolio.delete");
+    Route::get("/image_gallery", "Pages@image_gallery_index")->name("image_gallery");
+    Route::get("/image_gallery/create", "Pages@image_gallery_create")->name("image_gallery.create");
+    Route::post("/image_gallery/store", "System@image_gallery_store")->name("image_gallery.store");
+    Route::get("/image_gallery/edit/{id}", "Pages@image_gallery_edit")->name("image_gallery.edit");
+    Route::post("/image_gallery/update/{id}", "System@image_gallery_update")->name("image_gallery.update");
+    Route::delete("/image_gallery/delete/{id}", "System@image_gallery_delete")->name("image_gallery.delete");
+
+    Route::get("/video_gallery", "Pages@video_gallery_index")->name("video_gallery");
+    Route::get("/video_gallery/create", "Pages@video_gallery_create")->name("video_gallery.create");
+    Route::post("/video_gallery/store", "System@video_gallery_store")->name("video_gallery.store");
+    Route::get("/video_gallery/edit/{id}", "Pages@video_gallery_edit")->name("video_gallery.edit");
+    Route::post("/video_gallery/update/{id}", "System@video_gallery_update")->name("video_gallery.update");
+    Route::delete("/video_gallery/delete/{id}", "System@video_gallery_delete")->name("video_gallery.delete");
 });
 
-Route::prefix("/author")->namespace("Author")->group(function () {
+Route::prefix("/author")->namespace("Author")->middleware('gateway:2')->group(function () {
     Route::get("/", "Pages@index")->name("author.home");
 
     Route::get("/category", "Pages@category_index")->name("category");

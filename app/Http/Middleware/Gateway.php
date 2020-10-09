@@ -14,29 +14,29 @@ class Gateway
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$leveling)
+    public function handle($request, Closure $next, $leveling)
     {
         $level = session()->get("level");
         if ($level == NULL) {
-            Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu",function ($e) {
+            Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
                 $e->menu->add([
                     "text" => "Login",
                     "url" => "/login",
                     "icon" => "fa fa-sign-in-alt"
                 ]);
             });
-            return redirect("/login")->withErrors(["message"=>"Hak Akses Ditolak"]);
+            return redirect("/login")->withErrors(["message" => "Hak Akses Ditolak"]);
         } else {
-            $split = explode("|",$leveling);
-            if (count($split) > 0){
+            $split = explode("|", $leveling);
+            if (count($split) > 0) {
                 $is_authorize = false;
-                if (in_array(1,$split) && $level == 1){
+                if (in_array(1, $split) && $level == 1) {
                     //Admin
-                    Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu",function ($e){
+                    Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
                         $e->menu->add([
-                            "text"=>"Dashboard",
-                            "url"=>"/administrator",
-                            "icon"=>"fa fa-home"
+                            "text" => "Dashboard",
+                            "url" => "/administrator",
+                            "icon" => "fa fa-home"
                         ]);
 
                         $e->menu->add([
@@ -55,16 +55,16 @@ class Gateway
                         ]);
 
                         $e->menu->add([
-                            'text'    => 'Portofolio',
-                            'icon'    => 'fas fa-file',
+                            'text'    => 'Gallery',
+                            'icon'    => 'fas fa-image',
                             'submenu' => [
                                 [
-                                    'text' => 'Portofolio',
-                                    'url'  => '/administrator/portfolio',
+                                    'text' => 'Image',
+                                    'url'  => '/administrator/image_gallery',
                                 ],
                                 [
-                                    'text' => 'New Portofolio',
-                                    'url'  => '/administrator/portfolio/create',
+                                    'text' => 'Video',
+                                    'url'  => '/administrator/video_gallery',
                                 ],
                             ],
                         ]);
@@ -85,40 +85,74 @@ class Gateway
                         ]);
                     });
                     $is_authorize = true;
-                }elseif (in_array(2,$split) && $level == 2){
-                    $is_authorize = true;
+                } elseif (in_array(2, $split) && $level == 2) {
                     //Author
+                    Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
+                        $e->menu->add([
+                            "text" => "Dashboard",
+                            "url" => "/author",
+                            "icon" => "fa fa-home"
+                        ]);
 
-                }elseif (in_array(3,$split) && $level == 3){
+                        $e->menu->add([
+                            'text'    => 'Master',
+                            'icon'    => 'fas fa-file',
+                            'submenu' => [
+                                [
+                                    'text' => 'Category',
+                                    'url'  => '/author/category',
+                                ],
+                                [
+                                    'text' => 'New Category',
+                                    'url'  => '/author/category/create',
+                                ],
+                            ],
+                        ]);
+
+                        $e->menu->add([
+                            'text'    => 'Article',
+                            'icon'    => 'fas fa-file',
+                            'submenu' => [
+                                [
+                                    'text' => 'Article',
+                                    'url'  => '/author/article',
+                                ],
+                                [
+                                    'text' => 'New Article',
+                                    'url'  => '/author/article/create',
+                                ],
+                            ],
+                        ]);
+                    });
+                    $is_authorize = true;
+                } elseif (in_array(3, $split) && $level == 3) {
                     $is_authorize = true;
                     //Normal
                 }
                 //Semua Hak Akses
-                if (in_array(1,$split)){
-                    Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu",function ($e) {
+                if (in_array(1, $split) || in_array(2, $split)) {
+                    Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
                         $e->menu->add([
                             "text" => "Profile",
                             "url" => "/profile",
                             "icon" => "fa fa-users"
                         ]);
                     });
-
                 }
 
-                Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu",function ($e) {
+                Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
                     $e->menu->add([
                         "text" => "Logout",
                         "url" => "/logout",
                         "icon" => "fa fa-sign-out-alt"
                     ]);
                 });
-                if ($is_authorize){
+                if ($is_authorize) {
                     return $next($request);
                 }
-                return redirect("/login")->withErrors(["message"=>"Hak Akses Ditolak"]);
-            }else{
-                return redirect("/login")->withErrors(["message"=>"Hak Akses Ditolak"]);
-
+                return redirect("/login")->withErrors(["message" => "Hak Akses Ditolak"]);
+            } else {
+                return redirect("/login")->withErrors(["message" => "Hak Akses Ditolak"]);
             }
         }
     }

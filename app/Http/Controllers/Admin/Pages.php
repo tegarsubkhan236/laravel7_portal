@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
-use App\Models\Portfolio;
+use App\Models\ImageGallery;
 use App\Models\User;
+use App\Models\VideoGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +14,8 @@ class Pages extends Controller
 {
     public function index()
     {
-        $total_admin = User::where(["level"=>1])->count();
-        $total_author = User::where(["level"=>2])->count();
+        $total_admin = User::where(["level" => 1])->count();
+        $total_author = User::where(["level" => 2])->count();
         $total_announcement = Announcement::count();
         return view('admin.index', [
             'total_admin' => $total_admin,
@@ -88,39 +89,82 @@ class Pages extends Controller
         }
     }
 
-    public function portfolio_index()
+    public function image_gallery_index()
     {
-        $data = Portfolio::all();
-        return view('admin.portfolio', [
-            "title" => "Portfolio",
+        $data = ImageGallery::all();
+        return view('admin.image_gallery', [
+            "title" => "Image Gallery",
             "level" => "Administrator",
             "data" => $data,
         ]);
     }
 
-    public function portfolio_create()
+    public function image_gallery_create()
     {
-        return view("admin.portfolio_form", [
-            "title" => "portfolio",
+        return view("admin.image_gallery_form", [
+            "title" => "New Image Gallery",
             "level" => "Administrator",
             "data" => null,
             "route" => [
-                "name" => "portfolio.store",
+                "name" => "image_gallery.store",
                 "params" => []
             ]
         ]);
     }
 
-    public function portfolio_edit($id)
+    public function image_gallery_edit($id)
     {
-        $row = Portfolio::where(["id" => $id]);
+        $row = ImageGallery::where(["id" => $id]);
         if ($row->count() > 0) {
-            return view("admin.portfolio_form", [
-                "title" => "Update portfolio",
+            return view("admin.image_gallery_form", [
+                "title" => "Update Image Gallery",
                 "level" => "Admin",
                 "data" => $row->first(),
                 "route" => [
-                    "name" => "portfolio.update",
+                    "name" => "image_gallery.update",
+                    "params" => [
+                        $id
+                    ]
+                ]
+            ]);
+        } else {
+            return  back()->withErrors(["message" => "Data Tidak Ditemukan"]);
+        }
+    }
+
+    public function video_gallery_index()
+    {
+        $data = VideoGallery::all();
+        return view('admin.video_gallery', [
+            "title" => "Video Gallery",
+            "level" => "Administrator",
+            "data" => $data,
+        ]);
+    }
+
+    public function video_gallery_create()
+    {
+        return view("admin.video_gallery_form", [
+            "title" => "New Video",
+            "level" => "Administrator",
+            "data" => null,
+            "route" => [
+                "name" => "video_gallery.store",
+                "params" => []
+            ]
+        ]);
+    }
+
+    public function video_gallery_edit($id)
+    {
+        $row = VideoGallery::where(["id" => $id]);
+        if ($row->count() > 0) {
+            return view("admin.video_gallery_form", [
+                "title" => "Update Video",
+                "level" => "Admin",
+                "data" => $row->first(),
+                "route" => [
+                    "name" => "video_gallery.update",
                     "params" => [
                         $id
                     ]
