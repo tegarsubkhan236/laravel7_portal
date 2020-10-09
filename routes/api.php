@@ -14,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix("v0")->group(function (){
+    Route::prefix("announcement")->namespace("API")->group(function (){
+        Route::get("/list","Announcement@index");
+        Route::get("/detail","Announcement@detail");
+    });
+    Route::prefix("article")->namespace("API")->group(function (){
+        Route::get("/list","Article@index");
+        Route::get("/detail","Article@detail");
+    });
+    Route::prefix("category")->namespace("API")->group(function (){
+        Route::get("/list","Category@index");
+        Route::get("/detail","Category@detail");
+    });
+    Route::prefix("menu")->namespace("API")->group(function (){
+        Route::get("/list","Menu@index");
+        Route::get("/detail","Menu@detail");
+    });
+    Route::prefix("page")->namespace("API")->group(function (){
+        Route::get("/detail","Page@detail");
+    });
 });

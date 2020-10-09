@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Menu
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string|null $link
  * @property int $is_blank
  * @property int|null $page_id
  * @property int|null $parent_id
- * 
+ *
  * @property Menu $menu
  * @property Page $page
  * @property Collection|Menu[] $menus
@@ -33,6 +33,7 @@ class Menu extends Model
 	protected $casts = [
 		'is_blank' => 'int',
 		'page_id' => 'int',
+		'position' => 'int',
 		'parent_id' => 'int'
 	];
 
@@ -41,6 +42,7 @@ class Menu extends Model
 		'link',
 		'is_blank',
 		'page_id',
+		'position',
 		'parent_id'
 	];
 
