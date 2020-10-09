@@ -1,0 +1,58 @@
+    public function image_gallery_store(Request $request)
+    {
+        $request->validate([
+            "title" => "required",
+            "desc" => "required",
+        ]);
+        $images = [];
+        if ($request->has("image")) {
+            foreach ($request->file("image") as $index => $item) {
+                $path = $item->store("public/image_galleries");
+                $images[] = $path;
+            }
+        } else {
+            return response()->json(["code" => 500]);
+        }
+        $data = $request->except(['_token', 'video', 'image']);
+        $data["created_at"] = date("Y-m-d");
+        $data["updated_at"] = date("Y-m-d");
+
+        $store = ImageGallery::create($data);
+
+        if ($store) {
+            $id = $store->id;
+            foreach ($images as $index => $image) {
+                ImageGalleryDetail::create([
+                    "image" => $image,
+                    "video" => $request->video,
+                    "image_gallery_id" => $id
+                ]);
+            }
+            return back()->with(["message" => "Data has been stored successfully !"]);
+        } else {
+            return back()->with(["message" => "Data failed to store !"]);
+        }
+    }
+
+    public function image_gallery_update(Request $request, $id)
+    {
+        $request->validate([
+            "title" => "required",
+            "contents" => "required",
+        ]);
+        $data = $request->all();
+        $data["updated_at"] = date("Y-m-d");
+        unset($data["_token"]);
+        $ins = ImageGallery::where(["id" => $id])->update($data);
+        if ($ins) {
+            return back()->with(["message" => "Data has been updated successfully !"]);
+        } else {
+            return back()->withErrors(["message" => "Data failed to update !"]);
+        }
+    }
+
+    public function image_gallery_delete(Request $request)
+    {
+        ImageGallery::find($request->id)->delete();
+        return back()->with(["message" => "Data has been deleted successfully !"]);
+    }
