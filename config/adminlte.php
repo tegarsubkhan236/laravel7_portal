@@ -288,7 +288,11 @@ return [
             ],
         ],
         'Select2' => [
+<<<<<<< HEAD
             'active' => true,
+=======
+            'active' => false,
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
             'files' => [
                 [
                     'type' => 'js',

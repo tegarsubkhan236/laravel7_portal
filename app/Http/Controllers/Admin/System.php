@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+<<<<<<< HEAD
 use App\Models\ImageGallery;
 use App\Models\Portfolio;
 use App\Models\PortfolioDetail;
 use App\Models\User;
 use App\Models\VideoGallery;
+=======
+use App\Models\Portfolio;
+use App\Models\PortfolioDetail;
+use App\Models\User;
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
 use Illuminate\Http\Request;
 
 class System extends Controller
@@ -82,23 +88,36 @@ class System extends Controller
         return back()->with(["message" => "Data has been deleted successfully !"]);
     }
 
+<<<<<<< HEAD
     public function image_gallery_store(Request $request)
     {
         $request->validate([
             "name" => "required",
             "desc" => "required",
             "image" => "required",
+=======
+    public function portfolio_store(Request $request)
+    {
+        $request->validate([
+            "title" => "required",
+            "desc" => "required",
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
         ]);
         $images = [];
         if ($request->has("image")) {
             foreach ($request->file("image") as $index => $item) {
+<<<<<<< HEAD
                 $name = $item->getClientOriginalName();
                 $path = $item->store("public/image_galleries");
+=======
+                $path = $item->store("public/portfolios");
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
                 $images[] = $path;
             }
         } else {
             return response()->json(["code" => 500]);
         }
+<<<<<<< HEAD
         $data = $request->except(['_token']);
         $data['image'] = implode("|", $images);
         $data["created_at"] = date("Y-m-d");
@@ -151,12 +170,30 @@ class System extends Controller
         $store = VideoGallery::create($data);
 
         if ($store) {
+=======
+        $data = $request->except(['_token', 'video', 'image']);
+        $data["created_at"] = date("Y-m-d");
+        $data["updated_at"] = date("Y-m-d");
+
+        $store = Portfolio::create($data);
+
+        if ($store) {
+            $id = $store->id;
+            foreach ($images as $index => $image) {
+                PortfolioDetail::create([
+                    "image" => $image,
+                    "video" => $request->video,
+                    "portfolio_id" => $id
+                ]);
+            }
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
             return back()->with(["message" => "Data has been stored successfully !"]);
         } else {
             return back()->with(["message" => "Data failed to store !"]);
         }
     }
 
+<<<<<<< HEAD
     public function video_gallery_update(Request $request, $id)
     {
         $request->validate([
@@ -164,11 +201,22 @@ class System extends Controller
             "desc" => "required",
             "url" => "required",
             "type" => "required",
+=======
+    public function portfolio_update(Request $request, $id)
+    {
+        $request->validate([
+            "title" => "required",
+            "contents" => "required",
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
         ]);
         $data = $request->all();
         $data["updated_at"] = date("Y-m-d");
         unset($data["_token"]);
+<<<<<<< HEAD
         $ins = VideoGallery::where(["id" => $id])->update($data);
+=======
+        $ins = Portfolio::where(["id" => $id])->update($data);
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
         if ($ins) {
             return back()->with(["message" => "Data has been updated successfully !"]);
         } else {
@@ -176,9 +224,15 @@ class System extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function video_gallery_delete(Request $request)
     {
         VideoGallery::find($request->id)->delete();
+=======
+    public function portfolio_delete(Request $request)
+    {
+        Portfolio::find($request->id)->delete();
+>>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
         return back()->with(["message" => "Data has been deleted successfully !"]);
     }
 }
