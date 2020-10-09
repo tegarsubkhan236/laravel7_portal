@@ -33,11 +33,7 @@ class Pages extends Controller
     public function category_create()
     {
         return view("author.category_form", [
-<<<<<<< HEAD
             "title" => "Tambah Category",
-=======
-            "title" => "Tambah Author",
->>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
             "level" => "Author",
             "data" => null,
             "route" => [

@@ -45,7 +45,6 @@ Route::prefix("/administrator")->namespace("Admin")->middleware('gateway:1')->gr
     Route::post("/announcement/update/{id}", "System@announcement_update")->name("announcement.update");
     Route::delete("/announcement/delete/{id}", "System@announcement_delete")->name("announcement.delete");
 
-<<<<<<< HEAD
     Route::get("/image_gallery", "Pages@image_gallery_index")->name("image_gallery");
     Route::get("/image_gallery/create", "Pages@image_gallery_create")->name("image_gallery.create");
     Route::post("/image_gallery/store", "System@image_gallery_store")->name("image_gallery.store");
@@ -62,17 +61,6 @@ Route::prefix("/administrator")->namespace("Admin")->middleware('gateway:1')->gr
 });
 
 Route::prefix("/author")->namespace("Author")->middleware('gateway:2')->group(function () {
-=======
-    Route::get("/portfolio", "Pages@portfolio_index")->name("portfolio");
-    Route::get("/portfolio/create", "Pages@portfolio_create")->name("portfolio.create");
-    Route::post("/portfolio/store", "System@portfolio_store")->name("portfolio.store");
-    Route::get("/portfolio/edit/{id}", "Pages@portfolio_edit")->name("portfolio.edit");
-    Route::post("/portfolio/update/{id}", "System@portfolio_update")->name("portfolio.update");
-    Route::delete("/portfolio/delete/{id}", "System@portfolio_delete")->name("portfolio.delete");
-});
-
-Route::prefix("/author")->namespace("Author")->group(function () {
->>>>>>> e1cbd417b9d64bbcfb5c2e4e3ca769a5b312d70e
     Route::get("/", "Pages@index")->name("author.home");
 
     Route::get("/category", "Pages@category_index")->name("category");
