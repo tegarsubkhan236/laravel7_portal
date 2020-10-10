@@ -36,6 +36,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label >Posisi</label>
+                            <input type="number" name="is_commented" value="{{@$data['position']}}" class="form-control"  placeholder="Posisi">
+                        </div>
+                        <div class="form-group">
                             <label >Page Id</label>
                             <select name="page_id" class="form-control">
                                 <option hidden> ==Select Page Id== </option>

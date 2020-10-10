@@ -10,6 +10,7 @@ use App\Models\Page;
 use App\Models\User;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class System extends Controller
 {
@@ -186,11 +187,12 @@ class System extends Controller
     {
         $request->validate([
             "title" => "required",
-            "slug" => "required",
             "contents" => "required",
             "is_commented" => "required",
         ]);
         $data = $request->except(['_token']);
+
+        $data["slug"] = Str::slug($data["title"], "-");;
         $data["created_at"] = date("Y-m-d");
         $data["updated_at"] = date("Y-m-d");
 
@@ -207,11 +209,11 @@ class System extends Controller
     {
         $request->validate([
             "title" => "required",
-            "slug" => "required",
             "contents" => "required",
             "is_commented" => "required",
         ]);
         $data = $request->all();
+        $data["slug"] = Str::slug($data["title"], "-");
         $data["updated_at"] = date("Y-m-d");
         unset($data["_token"]);
         $ins = Page::where(["id" => $id])->update($data);
@@ -235,6 +237,7 @@ class System extends Controller
             "link" => "nullable",
             "is_blank" => "required",
             "page_id" => "nullable",
+            "position" => "required",
             "parent_id" => "nullable",
         ]);
         $data = $request->except(['_token']);
@@ -254,6 +257,7 @@ class System extends Controller
             "name" => "required",
             "link" => "nullable",
             "is_blank" => "required",
+            "position" => "required",
             "page_id" => "nullable",
             "parent_id" => "nullable",
         ]);
