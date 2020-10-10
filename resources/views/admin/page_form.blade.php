@@ -26,7 +26,11 @@
                         </div>
                         <div class="form-group">
                             <label >Is Commented</label>
-                            <input type="number" name="is_commented" value="{{@$data['is_commented']}}" class="form-control"  placeholder="Is Commented">
+                            <select name="is_commented" class="form-control">
+                                <option hidden> ===== People can comment this page? ===== </option>
+                                <option value="0"> No </option>
+                                <option value="1"> Yes </option>
+                            </select>
                         </div>
 
                         <div class="form-group">
