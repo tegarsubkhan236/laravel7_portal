@@ -47,20 +47,15 @@
 @stop
 
 @section('css')
-    <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
 @stop
 
 @section('js')
     <!-- Summernote -->
-    <script src="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
     <script>
         $(function () {
             $('#summernote').summernote()
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-                mode: "htmlmixed",
-                theme: "monokai"
-            });
         })
         $(function () {
             $('.select2').select2()

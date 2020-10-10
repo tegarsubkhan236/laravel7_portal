@@ -42,22 +42,15 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
 @stop
 
 @section('js')
-    <script src="{{ asset('AdminLTE/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
     <script>
         $(function () {
             // Summernote
             $('#summernote').summernote()
-
-            // CodeMirror
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-                mode: "htmlmixed",
-                theme: "monokai"
-            });
         })
     </script>
 @stop

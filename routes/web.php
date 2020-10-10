@@ -58,6 +58,20 @@ Route::prefix("/administrator")->namespace("Admin")->middleware('gateway:1')->gr
     Route::get("/video_gallery/edit/{id}", "Pages@video_gallery_edit")->name("video_gallery.edit");
     Route::post("/video_gallery/update/{id}", "System@video_gallery_update")->name("video_gallery.update");
     Route::delete("/video_gallery/delete/{id}", "System@video_gallery_delete")->name("video_gallery.delete");
+
+    Route::get("/menu", "Pages@menu_index")->name("menu");
+    Route::get("/menu/create", "Pages@menu_create")->name("menu.create");
+    Route::post("/menu/store", "System@menu_store")->name("menu.store");
+    Route::get("/menu/edit/{id}", "Pages@menu_edit")->name("menu.edit");
+    Route::post("/menu/update/{id}", "System@menu_update")->name("menu.update");
+    Route::delete("/menu/delete/{id}", "System@menu_delete")->name("menu.delete");
+
+    Route::get("/page", "Pages@page_index")->name("page");
+    Route::get("/page/create", "Pages@page_create")->name("page.create");
+    Route::post("/page/store", "System@page_store")->name("page.store");
+    Route::get("/page/edit/{id}", "Pages@page_edit")->name("page.edit");
+    Route::post("/page/update/{id}", "System@page_update")->name("page.update");
+    Route::delete("/page/delete/{id}", "System@page_delete")->name("page.delete");
 });
 
 Route::prefix("/author")->namespace("Author")->middleware('gateway:2')->group(function () {

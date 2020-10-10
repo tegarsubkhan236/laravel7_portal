@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\ImageGallery;
+use App\Models\Menu;
+use App\Models\Page;
 use App\Models\User;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
@@ -165,6 +167,96 @@ class Pages extends Controller
                 "data" => $row->first(),
                 "route" => [
                     "name" => "video_gallery.update",
+                    "params" => [
+                        $id
+                    ]
+                ]
+            ]);
+        } else {
+            return  back()->withErrors(["message" => "Data Tidak Ditemukan"]);
+        }
+    }
+
+    public function page_index()
+    {
+        $data = Page::all();
+        return view('admin.page', [
+            "title" => "Pages",
+            "level" => "Administrator",
+            "data" => $data,
+        ]);
+    }
+
+    public function page_create()
+    {
+        return view("admin.page_form", [
+            "title" => "New Page",
+            "level" => "Administrator",
+            "data" => null,
+            "route" => [
+                "name" => "page.store",
+                "params" => []
+            ]
+        ]);
+    }
+
+    public function page_edit($id)
+    {
+        $row = Page::where(["id" => $id]);
+        if ($row->count() > 0) {
+            return view("admin.page_form", [
+                "title" => "Update Page",
+                "level" => "Admin",
+                "data" => $row->first(),
+                "route" => [
+                    "name" => "page.update",
+                    "params" => [
+                        $id
+                    ]
+                ]
+            ]);
+        } else {
+            return  back()->withErrors(["message" => "Data Tidak Ditemukan"]);
+        }
+    }
+
+    public function menu_index()
+    {
+        $data = Menu::all();
+        return view('admin.menu', [
+            "title" => "Menus",
+            "level" => "Administrator",
+            "data" => $data,
+        ]);
+    }
+
+    public function menu_create()
+    {
+        return view("admin.menu_form", [
+            "title" => "New menu",
+            "level" => "Administrator",
+            "data" => null,
+            "page_data" => Page::all(),
+            "menu_data" => Menu::all(),
+            "route" => [
+                "name" => "menu.store",
+                "params" => []
+            ]
+        ]);
+    }
+
+    public function menu_edit($id)
+    {
+        $row = Menu::where(["id" => $id]);
+        if ($row->count() > 0) {
+            return view("admin.menu_form", [
+                "title" => "Update menu",
+                "level" => "Admin",
+                "data" => $row->first(),
+                "page_data" => Page::all(),
+                "menu_data" => Menu::all(),
+                "route" => [
+                    "name" => "menu.update",
                     "params" => [
                         $id
                     ]
