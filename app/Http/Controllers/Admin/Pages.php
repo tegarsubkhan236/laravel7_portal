@@ -222,7 +222,7 @@ class Pages extends Controller
 
     public function menu_index()
     {
-        $data = Menu::all();
+        $data = Menu::whereRaw("parent_id IS NULL")->get();
         return view('admin.menu', [
             "title" => "Menus",
             "level" => "Administrator",

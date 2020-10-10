@@ -19,42 +19,42 @@
                 </div>
                 <div class="card-body">
                     @include("message")
-                    <div class="table-responsive">
-                        <table class="table-bordered table-hover table" id="dtable">
-                            <thead class="thead-dark">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Link</th>
-                            <th>Is Blank</th>
-                            <th>Page Id</th>
-                            <th>Parent Id</th>
-                            <th style="text-align:center;">Aksi</th>
-                            </thead>
-                            <tbody>
-                            @foreach($data as $key => $row)
-                                <tr>
-                                    <td>{{($row->id)}}</td>
-                                    <td>{{$row->name}}</td>
-                                    <td>{{$row->link}}</td>
-                                    <td>{{$row->is_blank}}</td>
-                                    <td>{{$row->page_id}}</td>
-                                    <td>{{$row->parent_id}}</td>
-                                    <td style="text-align:center;">
-                                        <a href="{{route("menu.edit",[$row->id])}}" class="btn btn-sm btn-warning">
-                                            <li class="fa fa-eye"></li>
-                                        </a>
-                                        <form action="{{ route('menu.delete', [$row->id]) }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-sm delete-confirm" data-name="{{ $row->name }}" type="submit">
-                                                <li class="fa fa-ban"></li>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        @foreach($data as $key => $val)
+                            <div class="col-12">
+                                <div class="card autocollapse">
+                                    <div class="card-header clickable">
+                                        <h3 class="card-title">{{$val->name}}</h3>
+                                        @if($val->link)
+                                            <h3 class="card-title float-right">{{$val->link}}</h3>
+                                        @else
+                                            <h3 class="card-title float-right">{{url("page/".$val->page->slug)}}</h3>
+                                        @endif
+
+                                    </div>
+                                    @if($val->menus()->count() > 0)
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                                @foreach($val->menus()->orderBy("position","asc")->get() as $childKey => $childValue)
+                                                    <div class="col-md-12">
+                                                        <div class="card autocollapse">
+                                                            <div class="card-header clickable">
+                                                                <h3 class="card-title">
+                                                                    {{$childValue->name}}
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                @endforeach
+
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -63,13 +63,38 @@
 @stop
 
 @section('css')
-
+    <style>
+        .clickable
+        {
+            cursor: pointer;
+        }
+    </style>
 @stop
 
 @section('js')
     <script>
         $("#dtable").DataTable({
 
+        });
+        $(document).on('click', '.card div.clickable', function (e) {
+            var $this = $(this); //Heading
+            var $card = $this.parent('.card');
+            var $card_body = $card.children('.card-body');
+            var $display = $card_body.css('display');
+
+            if ($display == 'block') {
+                $card_body.slideUp();
+            } else if($display == 'none') {
+                $card_body.slideDown();
+            }
+        });
+
+        $(document).ready(function(e){
+            var $classy = '.card.autocollapse';
+
+            var $found = $($classy);
+            $found.find('.card-body').hide();
+            $found.removeClass($classy);
         });
     </script>
 @stop

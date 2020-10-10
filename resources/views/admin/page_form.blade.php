@@ -25,13 +25,10 @@
                             <input type="text" name="title" value="{{@$data['title']}}" class="form-control"  placeholder="Title">
                         </div>
                         <div class="form-group">
-                            <label >Slug</label>
-                            <input type="text" name="slug" value="{{@$data['slug']}}" class="form-control"  placeholder="Slug">
-                        </div>
-                        <div class="form-group">
                             <label >Is Commented</label>
                             <input type="number" name="is_commented" value="{{@$data['is_commented']}}" class="form-control"  placeholder="Is Commented">
                         </div>
+
                         <div class="form-group">
                             <label >Content</label>
                             <textarea id="summernote" name="contents">{{@$data['contents']}}</textarea>
