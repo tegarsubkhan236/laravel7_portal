@@ -132,9 +132,12 @@ class Gateway
                 } elseif (in_array(3, $split) && $level == 3) {
                     $is_authorize = true;
                     //Normal
+                } elseif (in_array(4, $split) && $level == 4) {
+                    $is_authorize = true;
+                    //Keuangan
                 }
                 //Semua Hak Akses
-                if (in_array(1, $split) || in_array(2, $split)) {
+                if (in_array(1, $split) || in_array(2, $split) || in_array(4, $split)) {
                     Event::listen("JeroenNoten\LaravelAdminLte\Events\BuildingMenu", function ($e) {
                         $e->menu->add([
                             "text" => "Profile",

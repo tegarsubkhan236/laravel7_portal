@@ -15,8 +15,8 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                             src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}"
-                             alt="User profile picture">
+                                src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}"
+                                alt="User profile picture">
                     </div>
 
                     <h3 class="profile-username text-center">{{$data["nama"]}}</h3>
@@ -26,8 +26,8 @@
                             Administrator
                         @elseif($data["level"]  == 2)
                             Author
-                        @elseif($data["level"]  == 0)
-                            Netizen
+                        @elseif($data["level"]  == 4)
+                            Keuangan
                         @endif
                     </p>
                 </div>

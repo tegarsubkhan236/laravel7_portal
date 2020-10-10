@@ -91,3 +91,7 @@ Route::prefix("/author")->namespace("Author")->middleware('gateway:2')->group(fu
     Route::post("/article/update/{id}", "System@article_update")->name("article.update");
     Route::delete("/article/delete/{id}", "System@article_delete")->name("article.delete");
 });
+
+Route::prefix("/keuangan")->namespace("Keuangan")->middleware('gateway:4')->group(function () {
+    Route::get("/", "Pages@index")->name("keuangan.home");
+});

@@ -9,10 +9,12 @@ class UserLevel implements CastsAttributes
     const ADMIN = 1;
     const AUTHOR = 2;
     const NORMAL = 3;
+    const KEUANGAN = 4;
     const list = [
-        "ADMIN"=>UserLevel::ADMIN,
-        "AUTHOR"=>UserLevel::AUTHOR,
-        "NORMAL"=>UserLevel::NORMAL,
+        "ADMIN" => UserLevel::ADMIN,
+        "AUTHOR" => UserLevel::AUTHOR,
+        "NORMAL" => UserLevel::NORMAL,
+        "KEUANGAN" => UserLevel::KEUANGAN,
     ];
     /**
      * Cast the given value.
@@ -44,20 +46,22 @@ class UserLevel implements CastsAttributes
 
     public static function lang($value)
     {
-        switch ($value){
+        switch ($value) {
             case UserLevel::ADMIN:
                 return "Administrator";
-                    break;
+                break;
             case UserLevel::AUTHOR:
                 return "Author";
-                    break;
+                break;
             case UserLevel::NORMAL:
                 return "Normal";
-                    break;
+                break;
+            case UserLevel::KEUANGAN:
+                return "Keuangan";
+                break;
             default:
                 return  "Tidak Terdefinisi";
                 break;
         }
-
     }
 }

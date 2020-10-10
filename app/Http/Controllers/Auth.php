@@ -45,6 +45,8 @@ class Auth extends Controller
                 $pages = "administrator";
             } elseif ($find->first()->level == 2) {
                 $pages = "author";
+            } elseif ($find->first()->level == 4) {
+                $pages = "keuangan";
             }
             return redirect("/" . $pages)->with(["message" => "Login Successfully !"]);
         } else {
