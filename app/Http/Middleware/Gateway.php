@@ -48,8 +48,12 @@ class Gateway
                                     'url'  => '/administrator/user',
                                 ],
                                 [
-                                    'text' => 'New User',
-                                    'url'  => '/administrator/user/create',
+                                    'text' => 'Menu',
+                                    'url'  => '/administrator/menu',
+                                ],
+                                [
+                                    'text' => 'Page',
+                                    'url'  => '/administrator/page',
                                 ],
                             ],
                         ]);

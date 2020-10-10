@@ -63,12 +63,6 @@
 @stop
 
 @section('js')
-    <!-- bs-custom-file-input -->
-    <script src="{{ asset('AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-    <script>
-        $(function () {
-            bsCustomFileInput.init();
-        });
-    </script>
+
 @stop
 

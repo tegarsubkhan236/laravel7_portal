@@ -11,7 +11,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-
+                    <div class="float-right">
+                        <a href="{{route("user.create")}}" class="btn btn-success">
+                            <li class="fa fa-plus"></li>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     @include("message")
