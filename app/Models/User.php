@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $alamat
  * @property string|null $email
  * @property string|null $no_hp
+ * @property int|null $nis
  * @property int $level
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -30,6 +31,7 @@ class User extends Model
 	protected $table = 'users';
 
 	protected $casts = [
+		'nis' => 'int',
 		'level' => 'int'
 	];
 
@@ -44,6 +46,7 @@ class User extends Model
 		'alamat',
 		'email',
 		'no_hp',
+		'nis',
 		'level'
 	];
 }
