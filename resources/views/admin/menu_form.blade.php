@@ -31,31 +31,40 @@
                         <div class="form-group">
                             <label >Is Blank</label>
                             <select name="is_blank" class="form-control">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
+                                <option hidden value="0"> == New Tab or No == </option>
+                                <option value="0" {{ @$data['is_blank'] == 0 ? "selected":""}}>No</option>
+                                <option value="1" {{ @$data['is_blank'] == 1 ? "selected":""}}>Yes</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label >Posisi</label>
-                            <input type="number" name="is_commented" value="{{@$data['position']}}" class="form-control"  placeholder="Posisi">
+                            <label >Is Visibility</label>
+                            <select name="is_visibility" class="form-control">
+                                <option hidden value="0"> == Visibility Setting == </option>
+                                <option value="0" {{ @$data['is_visibility'] == 0 ? "selected":""}}>No</option>
+                                <option value="1" {{ @$data['is_visibility'] == 1 ? "selected":""}}>Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >Position</label>
+                            <input type="number" name="position" value="{{@$data['position']}}" class="form-control"  placeholder="Position">
                         </div>
                         <div class="form-group">
                             <label >Page Id</label>
                             <select name="page_id" class="form-control">
-                                <option hidden> ==Select Page Id== </option>
+                                <option hidden value=""> ==Select Page Id== </option>
                                 <option value=""> No Page Id </option>
                                 @foreach ($page_data as $page)
-                                <option value="{{ $page->id }}" {{ @$data['page_id'] == $page->id ? "selected":""}}>{{ $page->id }}</option>
+                                <option value="{{ $page->id }}" {{ @$data['page_id'] == $page->id ? "selected":""}}>{{ $page->id }} | {{ $page->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label >Parent Id</label>
                             <select name="parent_id" class="form-control">
-                                <option hidden> ==Select Parent Id== </option>
+                                <option hidden value=""> ==Select Parent Id== </option>
                                 <option value=""> No Parent Id </option>
                                 @foreach ($menu_data as $menu)
-                                <option value="{{ $menu->id }}" {{ @$data['parent_id'] == $menu->id ? "selected":""}}>{{ $menu->id }}</option>
+                                <option value="{{ $menu->id }}" {{ @$data['parent_id'] == $menu->id ? "selected":""}}>{{ $menu->id }} | {{ $menu->name }}</option>
                                 @endforeach
                             </select>
                         </div>

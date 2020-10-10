@@ -199,9 +199,9 @@ class System extends Controller
         $store = Page::create($data);
 
         if ($store) {
-            return back()->with(["message" => "Data has been stored successfully !"]);
+            return redirect(route('page'))->with(["message" => "Data has been stored successfully !"]);
         } else {
-            return back()->with(["message" => "Data failed to store !"]);
+            return redirect(route('page'))->with(["message" => "Data failed to store !"]);
         }
     }
 
@@ -218,9 +218,9 @@ class System extends Controller
         unset($data["_token"]);
         $ins = Page::where(["id" => $id])->update($data);
         if ($ins) {
-            return back()->with(["message" => "Data has been updated successfully !"]);
+            return redirect(route('page'))->with(["message" => "Data has been updated successfully !"]);
         } else {
-            return back()->withErrors(["message" => "Data failed to update !"]);
+            return redirect(route('page'))->withErrors(["message" => "Data failed to update !"]);
         }
     }
 
@@ -237,17 +237,17 @@ class System extends Controller
             "link" => "nullable",
             "is_blank" => "required",
             "page_id" => "nullable",
+            "is_visibility" => "required",
             "position" => "required",
             "parent_id" => "nullable",
         ]);
         $data = $request->except(['_token']);
-
         $store = Menu::create($data);
 
         if ($store) {
-            return back()->with(["message" => "Data has been stored successfully !"]);
+            return redirect(route('menu'))->with(["message" => "Data has been stored successfully !"]);
         } else {
-            return back()->with(["message" => "Data failed to store !"]);
+            return redirect(route('menu'))->with(["message" => "Data failed to store !"]);
         }
     }
 
@@ -257,6 +257,7 @@ class System extends Controller
             "name" => "required",
             "link" => "nullable",
             "is_blank" => "required",
+            "is_visibility" => "required",
             "position" => "required",
             "page_id" => "nullable",
             "parent_id" => "nullable",
@@ -265,9 +266,9 @@ class System extends Controller
         unset($data["_token"]);
         $ins = Menu::where(["id" => $id])->update($data);
         if ($ins) {
-            return back()->with(["message" => "Data has been updated successfully !"]);
+            return redirect(route('menu'))->with(["message" => "Data has been updated successfully !"]);
         } else {
-            return back()->withErrors(["message" => "Data failed to update !"]);
+            return redirect(route('menu'))->withErrors(["message" => "Data failed to update !"]);
         }
     }
 

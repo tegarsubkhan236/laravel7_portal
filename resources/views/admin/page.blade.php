@@ -33,8 +33,8 @@
                                 <tr>
                                     <td>{{($row->id)}}</td>
                                     <td>{{$row->title}}</td>
-                                    <td>{{$row->created_at}}</td>
-                                    <td>{{$row->updated_at}}</td>
+                                    <td>{{ Carbon\Carbon::parse($row->created_at)->format('l  d-m-Y') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($row->updated_at)->format('l d-m-Y') }}</td>
                                     <td style="text-align:center;">
                                         <a href="{{route("page.edit",[$row->id])}}" class="btn btn-sm btn-warning">
                                             <li class="fa fa-eye"></li>

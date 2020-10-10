@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('name', 100);
             $table->string('link', 100)->nullable();
             $table->tinyInteger('is_blank')->default(0);
+            $table->tinyInteger('is_visibility')->default(0);
             $table->integer('page_id')->nullable()->index('page_id');
             $table->integer('parent_id')->nullable()->index('parent_id');
             $table->integer('position')->default(0);

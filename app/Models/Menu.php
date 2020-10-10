@@ -11,14 +11,16 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Menu
- *
+ * 
  * @property int $id
  * @property string $name
  * @property string|null $link
  * @property int $is_blank
+ * @property int $is_visibility
  * @property int|null $page_id
  * @property int|null $parent_id
- *
+ * @property int $position
+ * 
  * @property Menu $menu
  * @property Page $page
  * @property Collection|Menu[] $menus
@@ -32,18 +34,20 @@ class Menu extends Model
 
 	protected $casts = [
 		'is_blank' => 'int',
+		'is_visibility' => 'int',
 		'page_id' => 'int',
-		'position' => 'int',
-		'parent_id' => 'int'
+		'parent_id' => 'int',
+		'position' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'link',
 		'is_blank',
+		'is_visibility',
 		'page_id',
-		'position',
-		'parent_id'
+		'parent_id',
+		'position'
 	];
 
 	public function menu()
